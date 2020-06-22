@@ -1,0 +1,33 @@
+package application;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.text.SimpleDateFormat;
+
+import db.DB;
+
+public class Program {
+
+	public static void main(String[] args) {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		Connection conn = null;
+		PreparedStatement st = null;
+		try {
+			conn = DB.getConnection();
+			st = conn.prepareStatement(
+					"INSERT INTO seller "
+					+ "(Name, Email, BirthDate, BaseSalary, DepartmentId) "
+					+ "VALUES "
+					+ "(?, ?, ?, ?, ?)");
+			
+			st.setString(1, "Carl Purple");
+			st.setString(2, "carl@gmail.com");
+			st.setDate(3, new java.sql.Date(sdf.parse("22/04/1985").getTime()));
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+ 	}
+}

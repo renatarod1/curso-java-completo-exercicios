@@ -1,0 +1,58 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.Pessoa;
+import entities.PessoaFisica;
+import entities.PessoaJuridica;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		Pessoa pessoa;
+		List<Pessoa> list = new ArrayList<>();
+		Double totalTaxes = 0.0;
+		
+		System.out.print("Enter the number of tax payers: ");
+		int n = sc.nextInt();
+		sc.hasNextLine();
+		
+		for (int i = 1; i < n; i++) {
+			System.out.println("Tax payer #"+ i +" data:");
+			System.out.print("Individual or company (i/c)? ");
+			char tipoPessoa = sc.next().charAt(0);
+			sc.nextLine();
+			System.out.print("Name: ");
+			String nome = sc.nextLine();
+			System.out.print("Anual income: ");
+			Double rendaAnual = sc.nextDouble();
+			if (tipoPessoa == 'i') {
+				System.out.println("Health expenditures: ");
+				Double gastosComSaude = sc.nextDouble();
+				pessoa = new PessoaFisica(nome, rendaAnual, gastosComSaude);
+				list.add(pessoa);
+			} else {
+				System.out.println("Number of employees: ");
+				Integer numFuncionarios = sc.nextInt();
+				sc.nextLine();
+				pessoa = new PessoaJuridica(nome, rendaAnual, numFuncionarios);
+				list.add(pessoa);
+			}
+		}
+		
+		System.out.println("TAXES PAID:");
+		
+		for (Pessoa pes : list) {
+			System.out.print(pes.getNome() + " $" + String.format("%.2f", pes.taxesToPay()));
+			totalTaxes += pes.taxesToPay();
+		}		
+		System.out.printf("TOTAL TAXES: $ %.2f", totalTaxes);
+		sc.close();
+	}
+
+}

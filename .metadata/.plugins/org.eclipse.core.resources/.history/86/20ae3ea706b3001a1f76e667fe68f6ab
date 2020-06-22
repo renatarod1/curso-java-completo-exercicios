@@ -1,0 +1,5 @@
+package s21_ex_jdbc1;
+
+public class DbException {
+
+}
