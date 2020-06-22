@@ -1,2 +1,2 @@
-# curso-java-completo-exercicios
-Exercícios resolvidos - curso Udemy - Java Completo 2020 - Prof. Nelio Alves
+# Curso Java Completo 2020 - Prof. Nelio Alves
+Exercícios resolvidos durante o curso. 
