@@ -26,3 +26,12 @@ hs_err_pid*
 # Eclipse
 .settings/
 /.metadata/
+
+# build folders
+bin/
+target/
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
